@@ -39,7 +39,8 @@ const noteControllers = {
     const { id } = req.params;
     const note = req.body;
     const response = await NoteModel.findByIdAndUpdate(id, note, { new: true });
-    return res.status(200).json(response);
+    const user = await UserModel.findById(response.user);
+    return res.status(200).json({ response, user: { username: user.username } });
   },
   delete: async (req, res) => {
     const { id } = req.params;

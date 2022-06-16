@@ -8,6 +8,9 @@
     "api",
     "app"
   ],
+  "engines":{
+    "node": "16"
+  },
   "scripts": {
     "build": "npm run build --workspace=app",
     "start": "npm run start --workspace=api",
