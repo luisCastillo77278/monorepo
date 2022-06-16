@@ -5,14 +5,17 @@ import { Button } from 'react-bootstrap';
 const Note = ({
   note,
   handleToggle,
-  className
+  number
 }) => {
   const label = note.important
     ? 'make not important' : 'make important';
 
   return (
     <tr>
-      <td className={className}>
+      <td>
+        {number}
+      </td>
+      <td>
         <Link to={`/notes/${note.id}`}>
           {note.content}
         </Link>

@@ -2,18 +2,19 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import { useDispatch } from 'react-redux';
 import Toggable from './Toggable';
-import { createNote } from '../services/note';
+
+
+import { fetchDataAdd } from '../redux/slices/note';
 
 const FormNote = ({
-  user,
-  notes,
-  setNotes
+  user
 }) => {
 
   const refElement = useRef();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
 
   const [newNote, setNewNote] = useState({
     content: '',
@@ -22,9 +23,7 @@ const FormNote = ({
 
   const handleAddNote = async (e) => {
     e.preventDefault();
-    console.log(newNote);
-    const note = await createNote(newNote);
-    setNotes([...notes, note]);
+    dispatch(fetchDataAdd(newNote));
     setNewNote({ content: '', important: true });
 
     refElement.current.toggleVisibility();

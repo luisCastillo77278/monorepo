@@ -8,6 +8,8 @@ export const getToken = () => JSON.parse(window.localStorage.getItem('session'))
 
 export const getNotes = async () => (await Axios.get('/notes')).data;
 
+export const getNote = async (id) => (await Axios.get(`/notes/${id}`)).data;
+
 export const createNote = async (note) => {
   const config = {
     headers: { Authorization: `bearer ${getToken().token}` }

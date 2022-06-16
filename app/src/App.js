@@ -7,7 +7,7 @@ import CreateNote from './pages/CreateNote';
 import Home from './pages/Home';
 import { useAuth } from './context/userContext';
 import NavBar from './components/NavBar';
-
+import Detail from './pages/Detail';
 
 const Container = () => (
   <div className='container'>
@@ -27,6 +27,7 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const App = () => {
+  // ! quitar
   const [notes, setNotes] = useState([]);
   const { isAutenticated, login, logout } = useAuth();
 
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="notes" element={<Notes setNotes={setNotes} notes={notes} />} />
           {/* route note id */}
+          <Route path='notes/:id' element={<Detail />} />
           <Route path='create-note' element={
             <ProtectedRoute>
               <CreateNote
